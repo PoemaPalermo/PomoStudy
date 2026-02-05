@@ -1,20 +1,40 @@
 import tkinter as tk
 from tkinter import ttk
-import ttkbootstrap as ttkb
+#import ttkbootstrap as ttk
 
 #window
 window = tk.Tk()
 window.geometry("650x759")
 window.title("PomoDesk")
-window.mainloop()
 
+#frame central
+central = ttk.Frame(window, width=100,height=200,borderwidth=10,relief=tk.GROOVE)
+central.pack_propagate(False)
+central.pack(side="top")
 
-#frame del cronometro
-cronometro = ttk.Frame(window, width=100,height=456,borderwidth=10,relief=tk.GROOVE)
-cronometro.pack_propagate(False)
-cronometro.pack()
+#frame tareas Izquierda
+tareas_izquierda = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
+tareas_izquierda.pack_propagate(False)
+tareas_izquierda.pack(side="left", expand = True, fill = "both")
+
+#frame tareas Derecha
+tareas_derecha = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
+tareas_derecha.pack_propagate(False)
+tareas_derecha.pack(side="left", expand = True, fill = "both")
+
+# frame central dentro del frame central
+central_frame = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
+central_frame.pack_propagate(False)
+central_frame.pack(side="left", expand = True, fill = "both")
 
 #frame de pomodoro
-pomodoro = ttk.Frame(window, width=100,height=303,borderwidth=10,relief=tk.GROOVE)
+pomodoro = ttk.Frame(window, width=100,height=200,borderwidth=10,relief=tk.GROOVE)
 pomodoro.pack_propagate(False)
-pomodoro.pack()
+pomodoro.pack(side="bottom")
+
+
+
+
+
+
+window.tk.mainloop()
