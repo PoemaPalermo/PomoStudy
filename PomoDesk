@@ -7,33 +7,24 @@ window = tk.Tk()
 window.geometry("650x759")
 window.title("PomoDesk")
 
-#frame central
-central = ttk.Frame(window, width=100,height=200,borderwidth=10,relief=tk.GROOVE)
-central.pack_propagate(False)
-central.pack(side="top")
+#grid configuration
+for col in range(24):
+    if col % 3 == 0:
+        window.columnconfigure(col, weight=1)
+    else:
+        window.columnconfigure(col, weight=2)
 
-#frame tareas Izquierda
-tareas_izquierda = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
-tareas_izquierda.pack_propagate(False)
-tareas_izquierda.pack(side="left", expand = True, fill = "both")
-
-#frame tareas Derecha
-tareas_derecha = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
-tareas_derecha.pack_propagate(False)
-tareas_derecha.pack(side="left", expand = True, fill = "both")
-
-# frame central dentro del frame central
-central_frame = ttk.Frame(window, width=33,height=200,borderwidth=10,relief=tk.GROOVE)
-central_frame.pack_propagate(False)
-central_frame.pack(side="left", expand = True, fill = "both")
-
-#frame de pomodoro
-pomodoro = ttk.Frame(window, width=100,height=200,borderwidth=10,relief=tk.GROOVE)
-pomodoro.pack_propagate(False)
-pomodoro.pack(side="bottom")
-
-
-
+window.rowconfigure(0, weight=4)
+window.rowconfigure(1, weight=8)
+window.rowconfigure(2, weight=12)
+window.rowconfigure(3, weight=11)
+window.rowconfigure(4, weight=18)
+window.rowconfigure(5, weight=6)
+window.rowconfigure(6, weight=1)
+window.rowconfigure(7, weight=7)
+window.rowconfigure(8, weight=1)
+window.rowconfigure(9, weight=7)
+window.rowconfigure(10, weight=1)
 
 
 
