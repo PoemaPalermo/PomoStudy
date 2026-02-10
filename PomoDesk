@@ -92,7 +92,7 @@ startbutton = ttkb.Button(
     command=lambda: activate_button(startbutton, "start")
 )
 startbutton.image = images["start"]["normal"]
-startbutton.grid(column=1, row=1, padx=10)
+startbutton.grid(column=7, row=1, columnspan=2, sticky="ns", padx=10)
 
 
 stopbutton = ttkb.Button(
@@ -103,7 +103,7 @@ stopbutton = ttkb.Button(
     command=lambda: activate_button(stopbutton, "stop")
 )
 stopbutton.image = images["stop"]["normal"]
-stopbutton.grid(column=2, row=1, padx=10)
+stopbutton.grid(column=11, row=1, columnspan=3, sticky="ns", padx=10)
 
 
 resetbutton = ttkb.Button(
@@ -114,7 +114,7 @@ resetbutton = ttkb.Button(
     command=lambda: activate_button(resetbutton, "reset")
 )
 resetbutton.image = images["reset"]["normal"]
-resetbutton.grid(column=3, row=1, padx=10)
+resetbutton.grid(column=16, row=1, columnspan=2, sticky="ns", padx=10)
 
 
 
