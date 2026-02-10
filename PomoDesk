@@ -38,7 +38,6 @@ chronometer = tk.Label(
 chronometer.grid(column=10, row=3, columnspan=5, sticky="nsew")
 
 #BUTTONS
-
 # Cargar imágenes
 def load_image(path):
     return ImageTk.PhotoImage(Image.open(path))
@@ -82,6 +81,15 @@ def activate_button(button, key):
 
     print(f"Botón activo: {active_button}") 
 
+    '''
+    if active_button == "start":
+        start_timer()
+    elif active_button == "stop":
+        stop_timer()
+    elif active_button == "reset":
+        reset_timer()
+'''
+
 
 # Botones
 startbutton = ttkb.Button(
@@ -105,7 +113,6 @@ stopbutton = ttkb.Button(
 stopbutton.image = images["stop"]["normal"]
 stopbutton.grid(column=11, row=1, columnspan=3, sticky="ns", padx=10)
 
-
 resetbutton = ttkb.Button(
     window,
     image=images["reset"]["normal"],
@@ -114,8 +121,37 @@ resetbutton = ttkb.Button(
     command=lambda: activate_button(resetbutton, "reset")
 )
 resetbutton.image = images["reset"]["normal"]
-resetbutton.grid(column=16, row=1, columnspan=2, sticky="ns", padx=10)
+resetbutton.grid(column=16, row=1, columnspan=2, sticky="ewns", padx=10)
 
+
+#MAIN POMODORO
+#decoration
+'''
+SEGUI EL ORDEN PROPUESTO
+lines:
+div }---{ row 4, s  --  columns 0 a 24, ew
+main }---{ row 7, in the center  --  columns 2 a 22,ew
+smallers:
+    -row 7 , n  --  columns 1y2 , 7y8 , 13y14 , 19y20, in the middle
+    -row 7, s  --  columns 4y5 , 10y11 , 16y17 , 22y23, in the middle
+
+''backgrounds'':
+study }---{ rows 5y6, in the center  --  columns 1y2 , 7y8 , 13y14 , 19y20, in the middle
+rest }---{ rows 9y8, in the center  --  columns 4y5 , 10y11 , 16y17 , 22y23, in the middle
+
+'''
+
+#studing time
+'''
+row btn=5       tr=6
+colums son 1,2,7,8,13,14,19y20 
+'''
+
+#resting time
+'''
+row btn=9       tr=8
+colums son 4,5,10,11,16,17,22y23
+'''
 
 
 window.tk.mainloop()
