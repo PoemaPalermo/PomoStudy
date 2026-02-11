@@ -54,9 +54,30 @@ images = {
 }
 
 #BUTTONS
-active_button = None
-
 # Funciones
+active_button = None
+all_buttons = []
+
+def activate_button(button, key):
+    global active_button
+
+    for btn in all_buttons:
+        btn.config(image=images[key]["normal"])
+        btn.image = images[key]["normal"]
+
+    active_button = button
+    button.config(image=images[key]["pressed"])
+    button.image = images[key]["pressed"]
+    
+    '''
+    if active_button == "btn_start":
+        start_timer()
+    elif active_button == "btn_stop":
+        stop_timer()
+    elif active_button == "btn_reset":
+        reset_timer()
+'''
+
 def reset_buttons():
     startbutton.config(image=images["btn_start"]["normal"])
     startbutton.image = images["btn_start"]["normal"]
@@ -67,26 +88,6 @@ def reset_buttons():
     resetbutton.config(image=images["btn_reset"]["normal"])
     resetbutton.image = images["btn_reset"]["normal"]
 
-
-def activate_button(button, key):
-    global active_button
-
-    reset_buttons()
-    active_button = key
-
-    button.config(image=images[key]["pressed"])
-    button.image = images[key]["pressed"]
-
-    print(f"Botón activo: {active_button}") 
-
-    '''
-    if active_button == "btn_start":
-        start_timer()
-    elif active_button == "btn_stop":
-        stop_timer()
-    elif active_button == "btn_reset":
-        reset_timer()
-'''
 
 
 # Botones
@@ -149,49 +150,41 @@ study }---{ rows 5y6, in the center  --  columns 1y2 , 7y8 , 13y14 , 19y20, in t
 rest }---{ rows 9y8, in the center  --  columns 4y5 , 10y11 , 16y17 , 22y23, in the middle
 
 '''
+#lines
+
+#background
+for col in studing_positions:
+    background_study = ttkb.Label(
+        window,
+        image=images["bg_pomodoro"]["study"],
+        border=0
+        )
+    background_study.grid(row=5, rowspan=2, column=col, columnspan=2)
+    background_study.image = images["bg_pomodoro"]["study"]
+
+for col in resting_positions:
+    background_rest = ttkb.Label(
+        window,
+        image=images["bg_pomodoro"]["rest"],
+        border=0
+        )
+    background_rest.grid(row=8, rowspan=2, column=col, columnspan=2)
+    background_rest.image = images["bg_pomodoro"]["rest"]
 
 ##funtionalities
 #studing time
 '''
 row btn=5       tr=6
 colums son 1,2,7,8,13,14,19y20 
-
-idea a editar:
-for col in blue_positions:
-    frame = ttkb.Frame(window)
-    frame.grid(row=0, column=col, columnspan=2, sticky="nsew")
-
-    # Imagen de fondo
-    bg_label = tk.Label(frame, image=blue_image, border=0)
-    bg_label.place(relwidth=1, relheight=1)
-
-    # Botones dentro
-    btn1 = ttkb.Button(frame, text="A", bootstyle="primary-link")
-    btn1.pack(side="left", expand=True, padx=5, pady=5)
-
-    btn2 = ttkb.Button(frame, text="B", bootstyle="primary-link")
-    btn2.pack(side="right", expand=True, padx=5, pady=5)
-
 '''
-
 
 
 #resting time
 '''
 row btn=9       tr=8
 colums son 4,5,10,11,16,17,22y23
-
-idea a editar:
-for col in purple_positions:
-    frame = ttkb.Frame(window)
-    frame.grid(row=1, column=col, columnspan=2, sticky="nsew")
-
-    bg_label = tk.Label(frame, image=purple_image, border=0)
-    bg_label.place(relwidth=1, relheight=1)
-
-    label = ttkb.Label(frame, text="Texto", bootstyle="light")
-    label.place(relx=0.5, rely=0.5, anchor="center")
 '''
+
 
 
 window.tk.mainloop()
