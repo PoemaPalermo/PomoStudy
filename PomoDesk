@@ -26,48 +26,46 @@ window.rowconfigure(5, weight=6)
 window.rowconfigure((6,8,10), weight=1)
 window.rowconfigure((7,9), weight=7)
 
-
-#CHRONOMETER
-chronometer = tk.Label(
-    window, 
-    text="00:00", 
-    font=("Arial",70), 
-    borderwidth=0, 
-    highlightthickness=0, 
-    relief="flat")
-chronometer.grid(column=10, row=3, columnspan=5, sticky="nsew")
-
-#BUTTONS
 # Cargar imágenes
 def load_image(path):
     return ImageTk.PhotoImage(Image.open(path))
 
 images = {
-    "start": {
-        "normal": load_image("start_button.png"),
-        "pressed": load_image("start_button_pressed.png")
+    "btn_start": {
+        "normal": load_image("desing/btn_start.png"),
+        "pressed": load_image("desing/btn_start_pressed.png")
     },
-    "stop": {
-        "normal": load_image("stop_button.png"),
-        "pressed": load_image("stop_button_pressed.png")
+    "btn_stop": {
+        "normal": load_image("desing/btn_stop.png"),
+        "pressed": load_image("desing/btn_stop_pressed.png")
     },
-    "reset": {
-        "normal": load_image("reset_button.png"),
-        "pressed": load_image("reset_button_pressed.png")
+    "btn_reset": {
+        "normal": load_image("desing/btn_reset.png"),
+        "pressed": load_image("desing/btn_reset_pressed.png")
+    },
+    "bg_pomodoro": {
+        "study": load_image("desing/panel_study.png"),
+        "rest": load_image("desing/panel_rest.png")
+    },
+    "btn_pomodoro":{
+        "normal": load_image("desing/btn_pomodoro.png"),
+        "pressed": load_image("desing/btn_pomodoro_pressed.png")
     }
 }
+
+#BUTTONS
 active_button = None
 
 # Funciones
 def reset_buttons():
-    startbutton.config(image=images["start"]["normal"])
-    startbutton.image = images["start"]["normal"]
+    startbutton.config(image=images["btn_start"]["normal"])
+    startbutton.image = images["btn_start"]["normal"]
 
-    stopbutton.config(image=images["stop"]["normal"])
-    stopbutton.image = images["stop"]["normal"]
+    stopbutton.config(image=images["btn_stop"]["normal"])
+    stopbutton.image = images["btn_stop"]["normal"]
 
-    resetbutton.config(image=images["reset"]["normal"])
-    resetbutton.image = images["reset"]["normal"]
+    resetbutton.config(image=images["btn_reset"]["normal"])
+    resetbutton.image = images["btn_reset"]["normal"]
 
 
 def activate_button(button, key):
@@ -82,11 +80,11 @@ def activate_button(button, key):
     print(f"Botón activo: {active_button}") 
 
     '''
-    if active_button == "start":
+    if active_button == "btn_start":
         start_timer()
-    elif active_button == "stop":
+    elif active_button == "btn_stop":
         stop_timer()
-    elif active_button == "reset":
+    elif active_button == "btn_reset":
         reset_timer()
 '''
 
@@ -94,37 +92,48 @@ def activate_button(button, key):
 # Botones
 startbutton = ttkb.Button(
     window,
-    image=images["start"]["normal"],
+    image=images["btn_start"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(startbutton, "start")
+    command=lambda: activate_button(startbutton, "btn_start")
 )
-startbutton.image = images["start"]["normal"]
+startbutton.image = images["btn_start"]["normal"]
 startbutton.grid(column=7, row=1, columnspan=2, sticky="ns", padx=10)
 
 
 stopbutton = ttkb.Button(
     window,
-    image=images["stop"]["normal"],
+    image=images["btn_stop"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(stopbutton, "stop")
+    command=lambda: activate_button(stopbutton, "btn_stop")
 )
-stopbutton.image = images["stop"]["normal"]
+stopbutton.image = images["btn_stop"]["normal"]
 stopbutton.grid(column=11, row=1, columnspan=3, sticky="ns", padx=10)
 
 resetbutton = ttkb.Button(
     window,
-    image=images["reset"]["normal"],
+    image=images["btn_reset"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(resetbutton, "reset")
+    command=lambda: activate_button(resetbutton, "btn_reset")
 )
-resetbutton.image = images["reset"]["normal"]
+resetbutton.image = images["btn_reset"]["normal"]
 resetbutton.grid(column=16, row=1, columnspan=2, sticky="ewns", padx=10)
 
+#CHRONOMETER
+chronometer = tk.Label(
+    window, 
+    text="00:00", 
+    font=("Arial",70), 
+    borderwidth=0, 
+    highlightthickness=0, 
+    relief="flat")
+chronometer.grid(column=10, row=3, columnspan=5, sticky="nsew")
 
 #MAIN POMODORO
+studing_positions = [1, 7, 13, 19]
+resting_positions = [4, 10, 16, 22]
 #decoration
 '''
 SEGUI EL ORDEN PROPUESTO
@@ -141,16 +150,47 @@ rest }---{ rows 9y8, in the center  --  columns 4y5 , 10y11 , 16y17 , 22y23, in 
 
 '''
 
+##funtionalities
 #studing time
 '''
 row btn=5       tr=6
 colums son 1,2,7,8,13,14,19y20 
+
+idea a editar:
+for col in blue_positions:
+    frame = ttkb.Frame(window)
+    frame.grid(row=0, column=col, columnspan=2, sticky="nsew")
+
+    # Imagen de fondo
+    bg_label = tk.Label(frame, image=blue_image, border=0)
+    bg_label.place(relwidth=1, relheight=1)
+
+    # Botones dentro
+    btn1 = ttkb.Button(frame, text="A", bootstyle="primary-link")
+    btn1.pack(side="left", expand=True, padx=5, pady=5)
+
+    btn2 = ttkb.Button(frame, text="B", bootstyle="primary-link")
+    btn2.pack(side="right", expand=True, padx=5, pady=5)
+
 '''
+
+
 
 #resting time
 '''
 row btn=9       tr=8
 colums son 4,5,10,11,16,17,22y23
+
+idea a editar:
+for col in purple_positions:
+    frame = ttkb.Frame(window)
+    frame.grid(row=1, column=col, columnspan=2, sticky="nsew")
+
+    bg_label = tk.Label(frame, image=purple_image, border=0)
+    bg_label.place(relwidth=1, relheight=1)
+
+    label = ttkb.Label(frame, text="Texto", bootstyle="light")
+    label.place(relx=0.5, rely=0.5, anchor="center")
 '''
 
 
