@@ -53,17 +53,24 @@ images = {
     }
 }
 
-#BUTTONS
-# Funciones
-active_button = None
-all_buttons = []
 
-def activate_button(button, key):
+# FUNCTIONS
+active_button = None
+def reset_buttons():
+    startbutton.config(image=images["btn_start"]["normal"])
+    startbutton.image = images["btn_start"]["normal"]
+
+    stopbutton.config(image=images["btn_stop"]["normal"])
+    stopbutton.image = images["btn_stop"]["normal"]
+
+    resetbutton.config(image=images["btn_reset"]["normal"])
+    resetbutton.image = images["btn_reset"]["normal"]
+
+def time_button(button, key):
     global active_button
 
-    for btn in all_buttons:
-        btn.config(image=images[key]["normal"])
-        btn.image = images[key]["normal"]
+    reset_buttons()
+    active_button = key
 
     active_button = button
     button.config(image=images[key]["pressed"])
@@ -78,25 +85,15 @@ def activate_button(button, key):
         reset_timer()
 '''
 
-def reset_buttons():
-    startbutton.config(image=images["btn_start"]["normal"])
-    startbutton.image = images["btn_start"]["normal"]
 
-    stopbutton.config(image=images["btn_stop"]["normal"])
-    stopbutton.image = images["btn_stop"]["normal"]
-
-    resetbutton.config(image=images["btn_reset"]["normal"])
-    resetbutton.image = images["btn_reset"]["normal"]
-
-
-
+#BUTTONS
 # Botones
 startbutton = ttkb.Button(
     window,
     image=images["btn_start"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(startbutton, "btn_start")
+    command=lambda: time_button(startbutton, "btn_start")
 )
 startbutton.image = images["btn_start"]["normal"]
 startbutton.grid(column=7, row=1, columnspan=2, sticky="ns", padx=10)
@@ -107,7 +104,7 @@ stopbutton = ttkb.Button(
     image=images["btn_stop"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(stopbutton, "btn_stop")
+    command=lambda: time_button(stopbutton, "btn_stop")
 )
 stopbutton.image = images["btn_stop"]["normal"]
 stopbutton.grid(column=11, row=1, columnspan=3, sticky="ns", padx=10)
@@ -117,7 +114,7 @@ resetbutton = ttkb.Button(
     image=images["btn_reset"]["normal"],
     bootstyle="success-link",
     takefocus=False,
-    command=lambda: activate_button(resetbutton, "btn_reset")
+    command=lambda: time_button(resetbutton, "btn_reset")
 )
 resetbutton.image = images["btn_reset"]["normal"]
 resetbutton.grid(column=16, row=1, columnspan=2, sticky="ewns", padx=10)
