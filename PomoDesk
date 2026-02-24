@@ -9,7 +9,6 @@ window = ttkb.Window(themename="vapor")
 window.geometry("650x759")
 window.title("PomoDesk")
 
-
 #grid configuration
 for col in range(24):
     if col % 3 == 0:
@@ -132,6 +131,7 @@ chronometer.grid(column=10, row=3, columnspan=5, sticky="nsew")
 #MAIN POMODORO
 studing_positions = [1, 7, 13, 19]
 resting_positions = [4, 10, 16, 22]
+
 #decoration
 '''
 SEGUI EL ORDEN PROPUESTO
@@ -159,14 +159,6 @@ for col in studing_positions:
     background_study.grid(row=5, rowspan=2, column=col, columnspan=2)
     background_study.image = images["bg_pomodoro"]["study"]
 
-for col in resting_positions:
-    background_rest = ttkb.Label(
-        window,
-        image=images["bg_pomodoro"]["rest"],
-        border=0
-        )
-    background_rest.grid(row=8, rowspan=2, column=col, columnspan=2)
-    background_rest.image = images["bg_pomodoro"]["rest"]
 
 ##funtionalities
 #studing time
@@ -175,13 +167,45 @@ row btn=5       tr=6
 colums son 1,2,7,8,13,14,19y20 
 '''
 
-
 #resting time
 '''
 row btn=9       tr=8
 colums son 4,5,10,11,16,17,22y23
 '''
+rest1 = tk.Label(
+    window,
+    image=images["bg_pomodoro"]["rest"], 
+    text="00:00", 
+    compound="center",
+    font=("Arial",20))
+rest1.grid(column=resting_positions[0], row=8, rowspan= 2, sticky="nsew")
+rest1.image = images["bg_pomodoro"]["rest"]
 
+rest2 = tk.Label(
+    window,
+    image=images["bg_pomodoro"]["rest"], 
+    text="00:00", 
+    compound="center",
+    font=("Arial",20))
+rest2.grid(column=resting_positions[1], row=8, rowspan= 2, sticky="nsew")
+rest2.image = images["bg_pomodoro"]["rest"]
 
+rest3 = tk.Label(
+    window,
+    image=images["bg_pomodoro"]["rest"], 
+    text="00:00", 
+    compound="center",
+    font=("Arial",20))
+rest3.grid(column=resting_positions[2], row=8, rowspan= 2, sticky="nsew")
+rest3.image = images["bg_pomodoro"]["rest"]
 
-window.tk.mainloop()
+rest4 = tk.Label(
+    window,
+    image=images["bg_pomodoro"]["rest"], 
+    text="00:00", 
+    compound="center",
+    font=("Arial",20))
+rest4.grid(column=resting_positions[3], row=8, rowspan= 2, sticky="nsew")
+rest4.image = images["bg_pomodoro"]["rest"]
+
+window.mainloop()
