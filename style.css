@@ -1,12 +1,78 @@
-
 body{
     min-height: 100vh;
     display: flex;
+    margin: 0;
 }
 /* Tasks */
 .task{
     background: #321846;
     width:30vw;
+    font-size: 5px;
+}
+
+.task .container{
+    margin-left: 2em;
+}
+
+#task-input{
+    width: calc(100% - 2em);
+    padding: 0.5em;
+    font-size: 2em;
+    border: none;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
+
+#add-task{
+    background-color: #35E762;
+    font-size: 2em;
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+}
+
+#add-task:hover{
+    transform: scale(1.1);
+}
+
+#task-list{
+    list-style-type: none;
+    padding: 0;
+}
+
+#task-list li{
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#task-list li span{
+    overflow: auto;
+    white-space: nowrap;
+    flex: 1;
+}
+
+#task-list li:last-child{
+    border-bottom: none;
+}
+
+.delete, .edit{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    margin-left: 0.5em;
+}
+
+.edit{
+    background-color: aqua;
 }
 
 /* Timer */
@@ -39,6 +105,7 @@ hr{
     height: 5px;
     border-radius: 1em;
     border:none;
+    text-align: center;
 }
 
 .time{
