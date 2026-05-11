@@ -69,6 +69,12 @@ window.addEventListener('load', () => {
 });
 
 addTaskButton.addEventListener('click', addTask);
+taskInput.addEventListener('keydown', function(event){
+    if(event.key === 'Enter'){
+        addTask();
+    }
+});
+
 //timer
 const start = document.getElementById('start');
 const stop = document.getElementById('stop');
