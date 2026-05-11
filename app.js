@@ -6,7 +6,7 @@ const taskList = document.getElementById('task-list');
 function addTask(task){
     const taskText = taskInput.value.trim();
     if(taskText !== ''){
-        const task = { id: Dat.now(), text: taskText};
+        const task = { id: Date.now(), text: taskText};
         addTaskElement(task);
         saveTask(task);
         taskInput.value = '';
@@ -16,23 +16,27 @@ function addTask(task){
 function addTaskElement(task){
     const li = document.createElement('li');
     li.setAttribute('data-id', task.id);
-    li.innerHTML = '<span>${task.text}</span> <button class="edit" onClick="editTask${task.id}">Editar</button>    <button class="delete" onClick="deleteTask${task.id}">Borrar</button>';
+    li.innerHTML = li.innerHTML = `
+        <span>${task.text}</span>
+        <button class="edit" onClick="editTask(${task.id})">Editar</button>
+        <button class="delete" onClick="deleteTask(${task.id})">Borrar</button>
+        `;
     taskList.appendChild(li);
 }
 
 function deleteTask(id){
-    const li = document.querySelector('li[data-id="${id}"]');
+    const li = document.querySelector(`li[data-id="${id}"]`);
     li.remove();
-    remoceTaskFromLocalStorage(id);
+    removeTaskFromLocalStorage(id);
 }
 
-function edit(id){
-    const li = document.querySelector('li[data-id="${id}"]');
+function editTask(id){
+    const li = document.querySelector(`li[data-id="${id}"]`);
     const taskText = li.querySelector('span').textContent;
     const newTaskText = prompt('Editar tarea:', taskText);
     if(newTaskText !== null && newTaskText.trim() !== ''){
-        li.querySelector('span').textContent = newText;
-        updateTaskInLocalStorage(id, newText);
+        li.querySelector('span').textContent = newTaskText;
+        updateTaskInLocalStorage(id, newTaskText);
     }
 }
 
@@ -60,9 +64,10 @@ function updateTaskInLocalStorage(id, newText){
 }
 
 window.addEventListener('load', () => { 
-    const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(task => { addTaskElement(task)});
 });
+
 addTaskButton.addEventListener('click', addTask);
 //timer
 const start = document.getElementById('start');
