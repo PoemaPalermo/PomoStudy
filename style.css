@@ -4,24 +4,38 @@ head{
 footer{
     margin: 0;
 }
-body{
+
+body {
     min-height: 100vh;
     display: flex;
     margin: 0;
 }
-/* Tasks */
-.task{
-    background: #321846;
-    width:30vw;
+
+h2 {
+    font-size: 10em;
+    margin: 0.5em;
+}
+
+
+/* ==================== */
+/* Tareas */
+/* ==================== */
+
+.task {
+    background: #00b4d8;
+    width: 30vw;
     font-size: 5px;
 }
 
-.task .container{
+.task .container {
     margin-left: 2em;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-#task-input{
-    width: calc(100% - 2em);
+#task-input {
+    width: 20vw;
     padding: 0.5em;
     font-size: 2em;
     border: none;
@@ -30,8 +44,8 @@ body{
     margin-bottom: 1em;
 }
 
-#add-task{
-    background-color: #04e762;
+#add-task {
+    background-color: #779be7;
     font-size: 2em;
     padding: 0.5em 1.5em;
     border-radius: 0.5em;
@@ -41,16 +55,16 @@ body{
     font-weight: 600;
 }
 
-#add-task:hover{
+#add-task:hover {
     transform: scale(1.1);
 }
 
-#task-list{
+#task-list {
     list-style-type: none;
     padding: 0;
 }
 
-#task-list li{
+#task-list li {
     padding: 0.5em;
     font-size: 3em;
     border-bottom: 1px solid #ccc;
@@ -58,18 +72,20 @@ body{
     align-items: center;
 }
 
-#task-list li span{
+#task-list li span {
     overflow: auto;
     white-space: nowrap;
     flex: 1;
+    font-size: 1.5em;
 }
 
-#task-list li:last-child{
+#task-list li:last-child {
     border-bottom: none;
 }
 
-.delete, .edit{
-    background-color: red;
+.delete,
+.edit {
+    background-color: #ef476f;
     font-size: 0.75em;
     padding: 0.5em 1em;
     border-radius: 0.5em;
@@ -80,55 +96,56 @@ body{
     font-weight: 600;
 }
 
-.edit{
-    background-color: aqua;
+.edit {
+    background-color: #ffd166;
 }
 
-/* Timer */
-.timer{
-    background: #13123C;
+/* ==================== */
+/* Cronometro */
+/* ==================== */
+
+.timer {
+    background: #0096c7;
     width: 70vw;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 5px;
 }
-.timer .container{
+
+.timer .container {
+    background-color: #48cae4;
     width: 30vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1em;
-    background-color:#323154;
     border-radius: 2em;
     padding: 2em 1em;
 }
-h2{
-    font-size: 10em;
-    margin: 0.5em;
-}
-hr{
+
+.timer hr {
     width: 100%;
     background-color: black;
     height: 5px;
     border-radius: 1em;
-    border:none;
-    text-align: center;
+    border: none;
 }
 
-.time{
+.time {
     font-size: 13em;
     font-weight: 700;
     margin: 0.5em;
 }
 
-.button-wraper{
+/* Botones */
+.button-wraper {
     display: flex;
     gap: 1.5em;
 }
 
-.timer button{
+.timer button {
     font-size: 3em;
     font-weight: 800;
     padding: 0.5em 1.5em;
@@ -136,20 +153,53 @@ hr{
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    }
+}
 
-.timer button:hover{
+.timer button:hover {
     transform: scale(1.1);
 }
 
-#start{
-    background-color: #04e762;
+#start {
+    background-color: #06d6a0;
 }
 
-#stop{
-    background-color: #ffd300;
+#stop {
+    background-color: #ffd166;
 }
 
-#reset{
-    background-color: #ff0000;
+#reset {
+    background-color: #ef476f;
+}
+
+/* ==================== */
+/* Celulares */
+/* ==================== */
+
+@media (max-width: 480px) {
+  
+
+    body{
+      font-size: 50%;
+    }
+    .task .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #task-input {
+        width: 90%;
+    }
+
+    #add-task {
+        width: auto;
+    }
+
+    .timer .container {
+        width: 90%;
+    }
+
+    .button-wraper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
