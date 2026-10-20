@@ -3,10 +3,15 @@ const taskInput = document.getElementById('task-input');
 const addTaskButton = document.getElementById('add-task');
 const taskList = document.getElementById('task-list');
 
-function addTask(task){
+function addTask(){
     const taskText = taskInput.value.trim();
+
     if(taskText !== ''){
-        const task = { id: Date.now(), text: taskText};
+        const task = {
+            id: Date.now(),
+            text: taskText
+        };
+
         addTaskElement(task);
         saveTask(task);
         taskInput.value = '';
@@ -65,9 +70,10 @@ function updateTaskInLocalStorage(id, newText){
 
 window.addEventListener('load', () => { 
     const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => { addTaskElement(task)});
+    savedTasks.forEach(task => {
+        addTaskElement(task);
+    });
 });
-
 addTaskButton.addEventListener('click', addTask);
 taskInput.addEventListener('keydown', function(event){
     if(event.key === 'Enter'){
@@ -81,7 +87,8 @@ const stop = document.getElementById('stop');
 const reset = document.getElementById('reset');
 const timer = document.getElementById('time');
 
-let timeLeft = 1500;
+let originalTime = 1500
+let timeLeft = originalTime;
 let interval;
 
 const updateTimer = () =>{
@@ -94,19 +101,16 @@ const startTimer = () => {
     if(interval) return;
 
     interval = setInterval(() => {
-        timeLeft--;
-        updateTimer();
 
-        if(timeLeft === 0){
-            clearInterval(interval);
-            interval = null;
-
-            alert('Se acabo el tiempo!');
-
-            timeLeft = 1500;
-            updateTimer();
-        }
-    }, 1000);
+      timeLeft--;      
+      updateTimer();
+  
+      if (timeLeft === 0) {
+          clearInterval(interval);
+          interval = null;
+          alert('Se acabó el tiempo!');
+      }
+  }, 1000);
 }
 
 const stopTimer = () => {
@@ -117,13 +121,14 @@ const stopTimer = () => {
 const resetTimer = () => {
     clearInterval(interval);
     interval = null;
+    
+    timeLeft = originalTime;
 
-    timeLeft = 1500;
     updateTimer();
 }
 
 start.addEventListener('click', startTimer);
 stop.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
-
+timer.addEventListener('click', regresivo);
 updateTimer();
